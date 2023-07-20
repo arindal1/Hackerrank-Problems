@@ -53,12 +53,106 @@
 ## where LAT_N is the northern latitude and LONG_W is the western longitude.
 
 ### Solution:
-```sselect distinct city from station where MOD (id,2)=0 ORDER BY CITY ;'```
+```select distinct city from station where MOD (id,2)=0 ORDER BY CITY ;'```
 <br>
 <br>
 ## Question 9: <br>Find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table. <br>The STATION table is described as follows:
 <img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
+## where LAT_N is the northern latitude and LONG_W is the western longitude. <br>For example, if there are three records in the table with CITY values ‘New York’, ‘New York’, ‘Bengalaru’, there are 2 different city names: ‘New York’ and ‘Bengalaru’. The query returns 1.
+
+### Solution:
+```select count(CITY)- count(distinct CITY) from STATION;'```
+<br>
+<br>
+## Question 10: <br>Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically. <br>The STATION table is described as follows:
+<img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
+## where LAT_N is the northern latitude and LONG_W is the western longitude. <br>For example, if there are three records in the table with CITY values ‘New York’, ‘New York’, ‘Bengalaru’, there are 2 different city names: ‘New York’ and ‘Bengalaru’. The query returns 1.
+
+### Solution:
+```
+select CITY,LENGTH(CITY) from STATION order by Length(CITY) asc, CITY limit 1; 
+select CITY,LENGTH(CITY) from STATION order by Length(CITY) desc, CITY limit 1; 
+```
+<br>
+<br>
+## Question 11: <br> Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates. <br>The STATION table is described as follows:
+<img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
+## where LAT_N is the northern latitude and LONG_W is the western longitude. <br>For example, if there are three records in the table with CITY values ‘New York’, ‘New York’, ‘Bengalaru’, there are 2 different city names: ‘New York’ and ‘Bengalaru’. The query returns 1.
+
+### Solution:
+```
+SELECT DISTINCT 
+CITY 
+FROM STATION 
+WHERE lower(substr(CITY,1,1)) in ('a','e','i','o','u') ;
+```
+<br>
+<br>
+## Question 12: <br> Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates. <br>The STATION table is described as follows:
+<img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
 ## where LAT_N is the northern latitude and LONG_W is the western longitude.
 
 ### Solution:
-```sselect distinct city from station where MOD (id,2)=0 ORDER BY CITY ;'```
+```
+SELECT DISTINCT(CITY) FROM STATION WHERE CITY LIKE '%a' OR CITY LIKE '%e' OR CITY LIKE '%i' OR CITY LIKE '%o' OR CITY LIKE '%u'; 
+```
+<br>
+<br>
+## Question 13: <br>Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates. <br>The STATION table is described as follows:
+<img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
+## where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+### Solution:
+```
+SELECT DISTINCT CITY FROM STATION WHERE (CITY LIKE 'A%' OR CITY LIKE 'E%' OR CITY LIKE 'I%' OR CITY LIKE 'O%' OR CITY LIKE 'U%') AND (CITY LIKE '%a' OR CITY LIKE '%e' OR CITY LIKE '%i' OR CITY LIKE '%o' OR CITY LIKE '%u') order by city;      
+```
+<br>
+<br>
+## Question 14: <br>Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates. <br>The STATION table is described as follows:
+<img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
+## where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+### Solution:
+```
+SELECT DISTINCT CITY FROM STATION WHERE upper(SUBSTR(CITY,1,1)) NOT IN ('A','E','I','O','U') AND lower(SUBSTR(CITY,1,1)) NOT IN ('a','e','i','o','u');         
+```
+<br>
+<br>
+## Question 15: <br>Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates. <br>The STATION table is described as follows:
+<img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
+## where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+### Solution:
+```
+SELECT DISTINCT CITY FROM STATION WHERE UPPER(SUBSTR(CITY, LENGTH(CITY), 1)) NOT IN ('A','E','I','O','U') AND LOWER(SUBSTR(CITY, LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');        
+```
+<br>
+<br>
+## Question 16: <br>Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates. <br>The STATION table is described as follows:
+<img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
+## where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+### Solution:
+```
+SELECT DISTINCT CITY FROM STATION WHERE LOWER(SUBSTR(CITY,1,1)) NOT IN ('a','e','i','o','u') OR LOWER(SUBSTR(CITY, LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');        
+```
+<br>
+<br>
+## Question 17: <br>Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates. <br>The STATION table is described as follows:
+<img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
+## where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+### Solution:
+```
+SELECT DISTINCT CITY FROM STATION WHERE LOWER(SUBSTR(CITY,1,1)) NOT IN ('a','e','i','o','u') AND LOWER(SUBSTR(CITY,LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');         
+```
+<br>
+<br>
+## Question 18: <br>Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates. <br>The STATION table is described as follows:
+<img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
+## where LAT_N is the northern latitude and LONG_W is the western longitude.
+
+### Solution:
+```
+SELECT DISTINCT CITY FROM STATION WHERE LOWER(SUBSTR(CITY,1,1)) NOT IN ('a','e','i','o','u') AND LOWER(SUBSTR(CITY,LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');         
+```
