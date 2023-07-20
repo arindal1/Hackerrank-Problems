@@ -75,7 +75,7 @@ select CITY,LENGTH(CITY) from STATION order by Length(CITY) desc, CITY limit 1;
 ```
 <br>
 <br>
-## Question 11: <br> Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates. <br>The STATION table is described as follows:
+## Question 11: <br>Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates. <br>The STATION table is described as follows:
 <img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
 ## where LAT_N is the northern latitude and LONG_W is the western longitude. <br>For example, if there are three records in the table with CITY values ‘New York’, ‘New York’, ‘Bengalaru’, there are 2 different city names: ‘New York’ and ‘Bengalaru’. The query returns 1.
 
@@ -88,7 +88,7 @@ WHERE lower(substr(CITY,1,1)) in ('a','e','i','o','u') ;
 ```
 <br>
 <br>
-## Question 12: <br> Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates. <br>The STATION table is described as follows:
+## Question 12: <br>Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates. <br>The STATION table is described as follows:
 <img src="https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg">
 ## where LAT_N is the northern latitude and LONG_W is the western longitude.
 
